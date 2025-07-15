@@ -1,6 +1,4 @@
-
 import Foundation
-
 
 var userName: String = "Sundar"
 var userAge: Int = 22
