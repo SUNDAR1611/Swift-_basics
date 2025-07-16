@@ -1,10 +1,12 @@
 import Foundation
+
 func showWelcomeBanner() {
     print("\n User Access Panel")
     print("═══════════════════════════")
-
-    print("welcome")
+    print("Welcome!")
 }
+
+
 func showRoleMessage(for type: String) {
     switch type.lowercased() {
     case "admin":
@@ -13,13 +15,15 @@ func showRoleMessage(for type: String) {
     case "guest":
         print(" Hello, Guest! You have limited browsing access.")
         print(" Some features are restricted.")
-    case "project_managerr":
-        print("  Hi, Editor! You can add or modify content.")
-        print("Publishing rights granted.")
+    case "editor", "project_manager":
+        print(" Hi, Editor! You can add or modify content.")
+        print(" Publishing rights granted.")
     default:
-        print("Unknown user type. Please contact support.")
+        print(" Unknown user type. Please contact support.")
     }
 }
+
+
 func getCurrentTime() -> String {
     let formatter = DateFormatter()
     formatter.timeStyle = .short
@@ -40,8 +44,16 @@ if let phone = userPhoneNumber, !phone.isEmpty {
 print("\n Enter your user type (admin / guest / editor):")
 let userType = readLine() ?? ""
 
-print("\n  Checking access at \(getCurrentTime())...")
+print("\n Checking access at \(getCurrentTime())...")
 showRoleMessage(for: userType)
 
-func showRoleMessage(for type: String) {
-    switch type.lowercased() {
+
+print("\n Session Summary")
+print("---------------------------")
+if let phone = userPhoneNumber, !phone.isEmpty {
+    print(" Phone: \(phone)")
+} else {
+    print(" Phone: Not provided")
+}
+print(" Role: \(userType.isEmpty ? "Not provided" : userType.capitalized)")
+print(" Checked at: \(getCurrentTime())")
