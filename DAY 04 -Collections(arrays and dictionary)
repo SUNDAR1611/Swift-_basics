@@ -1,0 +1,63 @@
+import Foundation
+
+let fruits = ["Mango", "Apple", "Banana", "Grapes", "Orange"]
+print("Favorite Fruits:")
+for fruit in fruits {
+    print("- \(fruit)")
+}
+
+
+let prices = [10, 20, 30, 40, 50]
+
+let total = prices.reduce(0, +)
+let average = Double(total) / Double(prices.count)
+let maxPrice = prices.max() ?? 0
+let filtered = prices.filter { $0 > 25 }
+
+print("\nFruit Prices: \(prices)")
+print("Total Price: \(total)")
+print("Average Price: \(average)")
+print("Max Price: \(maxPrice)")
+print("Prices above 25: \(filtered)")
+
+
+func pricesAbove(_ threshold: Int, from array: [Int]) -> [Int] {
+    return array.filter { $0 > threshold }
+}
+
+print("Prices above 35: \(pricesAbove(35, from: prices))")
+
+
+
+var appSettings1: [String: Any] = [
+    "theme": "dark",
+    "notifications": true
+]
+
+var appSettings2: [String: Any] = [
+    "volume": 70,
+    "notifications": false 
+]
+
+
+let combinedSettings = appSettings1.merging(appSettings2) { (_, new) in new }
+
+print("\nCombined App Settings:")
+for (key, value) in combinedSettings {
+    print("\(key): \(value)")
+}
+
+
+func updateSetting(key: String, value: Any, in settings: [String: Any]) -> [String: Any] {
+    var newSettings = settings
+    newSettings[key] = value
+    return newSettings
+}
+
+
+let updatedSettings = updateSetting(key: "theme", value: "light", in: combinedSettings)
+
+print("\nUpdated Settings (after changing theme):")
+for (key, value) in updatedSettings {
+    print("\(key): \(value)")
+}
