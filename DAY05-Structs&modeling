@@ -1,0 +1,60 @@
+import Foundation
+
+
+struct User {
+    var name: String
+    var age: Int
+    var email: String
+    var isActive: Bool
+
+    func userSummary() -> String {
+        return """
+         Name     : \(name)
+         Age      : \(age)
+        Email    : \(email)
+        Active   : \(isActive ? "Yes" : "No")
+         Adult    : \(isAdult() ? "Yes" : "No")
+        """
+    }
+
+    func isAdult() -> Bool {
+        return age >= 18
+    }
+}
+
+
+func stringToBool(_ input: String) -> Bool {
+    return input.lowercased() == "yes" || input.lowercased() == "true"
+}
+
+var users: [User] = []
+
+print("How many users do you want to enter?")
+let countInput = readLine() ?? "1"
+let numberOfUsers = Int(countInput) ?? 1
+
+for i in 1...numberOfUsers {
+    print("\n Enter details for User \(i):")
+    
+    print("Name:")
+    let name = readLine() ?? "Unknown"
+
+    print("Age:")
+    let ageInput = readLine() ?? "0"
+    let age = Int(ageInput) ?? 0
+
+    print("Email:")
+    let email = readLine() ?? "not_provided@example.com"
+
+    print("Is Active? (yes/no):")
+    let activeInput = readLine() ?? "no"
+    let isActive = stringToBool(activeInput)
+
+    let user = User(name: name, age: age, email: email, isActive: isActive)
+    users.append(user)
+}
+
+print("\n All User Summaries:")
+for (index, user) in users.enumerated() {
+    print("\nUser \(index + 1):\n\(user.userSummary())")
+}
